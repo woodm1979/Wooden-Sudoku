@@ -20,7 +20,7 @@ except ImportError:
 #############
 
 def cross(ms, ns):
-    'Returns a basic cross product matrix of two iters.'
+    """Returns a basic cross product matrix of two iters."""
     return [m + n for m in ms for n in ns]
 
 
@@ -29,7 +29,7 @@ def cross(ms, ns):
 ###########
 
 class InvalidCellValue(ValueError):
-    "Indicates an invalid value was assigned to a cell."
+    """Indicates an invalid value was assigned to a cell."""
     pass
 
 
@@ -60,7 +60,7 @@ class Sudoku(object):
         self.box_list = [set(cross(rs, cs)) for rs in self.row_triplets
                                             for cs in self.col_triplets]
 
-        # It's usefull to have a list of all unit sets.
+        # It's useful to have a list of all unit sets.
         self.unit_list = self.col_list + self.row_list + self.box_list
 
         # Compile a set of all units for each given square.
@@ -97,7 +97,7 @@ class Sudoku(object):
                 self.assign(square, value)
 
     def __str__(self):
-        "An ascii representation of the Sudoku."
+        """An ascii representation of the Sudoku."""
 
         # All cells will be of the same width.
         width = 1 + max(len(self.cells[s]) for s in self.squares)
@@ -112,13 +112,13 @@ class Sudoku(object):
                 line.append(''.join(map(str,
                     sorted(self.cells[r + c]))).center(width))
 
-                # If this is the end of the box, add a box seperator.
+                # If this is the end of the box, add a box separator.
                 if c in self.last_col_in_box:
                     line.append('|')
 
             lines.append(''.join(line))
 
-            # If this is the end of a box, add a box seperator.
+            # If this is the end of a box, add a box separator.
             if r in self.last_row_in_box:
                 lines.append('+'.join(['-' * (width * 3)] * 3))
 
@@ -217,7 +217,7 @@ class Sudoku(object):
         return success
 
     def check_hidden(self, cursors, unit):
-        "Checks to see if cursors contains hidden pairs, or triplets, or..."
+        """Checks to see if cursors contains hidden pairs, or triplets, or..."""
         success = False
 
         # Determine which values are present in cursors.
@@ -248,7 +248,7 @@ class Sudoku(object):
         return success
 
     def check_naked(self, cursors):
-        "Checks to see if cursors contains naked pairs, or triplets, or..."
+        """Checks to see if cursors contains naked pairs, or triplets, or..."""
         success = False
 
         # Determine which values are present in cursors.
@@ -304,7 +304,7 @@ class Sudoku(object):
                 # ... then check.
                 if sample.solve_guess_n_check():
 
-                    # Copy the completly determined cells from the copy.
+                    # Copy the completely determined cells from the copy.
                     self.cells = sample.cells
 
                     # Clean up self's internal data structures.
