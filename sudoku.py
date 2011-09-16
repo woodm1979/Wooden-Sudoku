@@ -74,8 +74,8 @@ class Sudoku(object):
         # searched on.
         # *** IMPORTANT NOTE *** IMPORTANT NOTE *** IMPORTANT NOTE ***
         self.peers = dict((s, set(s2 for u in self.units[s]
-                                     for s2 in u if s2 != s))
-                      for s in self.squares)
+                                     for s2 in u if s2 != s)) for
+                          s in self.squares)
 
         # To start, every square can be any digit.
         self.cells = dict((s, set(self.digits)) for s in self.squares)
